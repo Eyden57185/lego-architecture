@@ -127,217 +127,34 @@
     <script>
         const setsData = [
             // SKYLINES
-            { id: 1, setNum: "21026", name: "Venise", type: "skyline", year: "2016", image: "https://images.brickset.com/sets/images/21026-1.jpg?rand=145163", description: "Canaux et monuments vénitiens historiques.", details: ["Campanile de Saint-Marc", "Basilique Saint-Marc", "Pont du Rialto", "Pont des Soupirs"] },
-            { id: 2, setNum: "21027", name: "Berlin", type: "skyline", year: "2016", image: "https://images.brickset.com/sets/images/21027-1.jpg?rand=145163", description: "Hommage à la capitale allemande.", details: ["Porte de Brandebourg", "Tour de la Télévision", "Reichstag", "Mémorial du Mur"] },
-            { id: 3, setNum: "21028", name: "New York City", type: "skyline", year: "2016", image: "https://images.brickset.com/sets/images/21028-1.jpg?rand=145163", description: "Ligne d'horizon emblématique de Manhattan.", details: ["Empire State Building", "Chrysler Building", "Statue de la Liberté", "One WTC"] },
-            { id: 4, setNum: "21032", name: "Sydney", type: "skyline", year: "2017", image: "https://images.brickset.com/sets/images/21032-1.jpg?rand=145163", description: "La magnifique baie de Sydney.", details: ["Opéra de Sydney", "Harbour Bridge", "Sydney Tower"] },
-            { id: 5, setNum: "21033", name: "Chicago", type: "skyline", year: "2017", image: "https://images.brickset.com/sets/images/21033-1.jpg?rand=145163", description: "Architecture audacieuse de Windy City.", details: ["Willis Tower", "John Hancock Center", "Wrigley Building"] },
-            { id: 6, setNum: "21034", name: "Londres", type: "skyline", year: "2017", image: "https://images.brickset.com/sets/images/21034-1.jpg?rand=145163", description: "Symboles royaux et modernes le long de la Tamise.", details: ["Big Ben", "London Eye", "Tower Bridge", "National Gallery"] },
-            { id: 7, setNum: "21039", name: "Shanghai", type: "skyline", year: "2018", image: "https://images.brickset.com/sets/images/21039-1.jpg?rand=145163", description: "Panorama futuriste de la mégalopole chinoise.", details: ["Tour Shanghai", "Perle de l'Orient", "World Financial Center", "Le Bund"] },
-            { id: 8, setNum: "21047", name: "Las Vegas", type: "skyline", year: "2018", image: "https://images.brickset.com/sets/images/21047-1.jpg?rand=145163", description: "Le Strip scintillant et ses hôtels-casinos.", details: ["Bellagio", "Luxor", "Wynn", "Stratosphere", "Panneau Welcome"] },
-            { id: 9, setNum: "21043", name: "San Francisco", type: "skyline", year: "2019", image: "https://images.brickset.com/sets/images/21043-1.jpg?rand=145163", description: "Collines escarpées et pont suspendu.", details: ["Golden Gate Bridge", "Transamerica Pyramid", "Alcatraz", "Painted Ladies"] },
-            { id: 10, setNum: "21044", name: "Paris", type: "skyline", year: "2019", image: "https://images.brickset.com/sets/images/21044-1.jpg?rand=145163", description: "La Ville Lumière et ses monuments.", details: ["Tour Eiffel", "Arc de Triomphe", "Louvre", "Grand Palais"] },
-            { id: 11, setNum: "21051", name: "Tokyo", type: "skyline", year: "2020", image: "https://images.brickset.com/sets/images/21051-1.jpg?rand=145163", description: "Traditions japonaises et technologies.", details: ["Tour Tokyo", "Tokyo Skytree", "Mont Fuji", "Shibuya"] },
-            { id: 12, setNum: "21052", name: "Dubaï", type: "skyline", year: "2020", image: "https://images.brickset.com/sets/images/21052-1.jpg?rand=145163", description: "Gratte-ciels futuristes au cœur du désert.", details: ["Burj Khalifa", "Burj Al Arab", "Emirates Towers", "Dubai Frame"] },
-            { id: 13, setNum: "21057", name: "Singapour", type: "skyline", year: "2022", image: "https://images.brickset.com/sets/images/21057-1.jpg?rand=145163", description: "Merveille d'ingénierie tropicale et moderne.", details: ["Marina Bay Sands", "Gardens by the Bay", "Hôtel Fullerton"] },
-            { id: 14, setNum: "21068", name: "Shanghai (Nouvelle version)", type: "skyline", year: "2025", image: "https://images.brickset.com/sets/images/21039-1.jpg?rand=145163", description: "Réédition modernisée de la skyline.", details: ["Nouvelles tours", "Le Bund illuminé"] },
+            { id: 1, setNum: "21026", name: "Venise", type: "skyline", year: "2016", description: "Canaux et monuments vénitiens historiques.", details: ["Campanile de Saint-Marc", "Basilique Saint-Marc", "Pont du Rialto", "Pont des Soupirs"] },
+            { id: 2, setNum: "21027", name: "Berlin", type: "skyline", year: "2016", description: "Hommage à la capitale allemande.", details: ["Porte de Brandebourg", "Tour de la Télévision", "Reichstag", "Mémorial du Mur"] },
+            { id: 3, setNum: "21028", name: "New York City", type: "skyline", year: "2016", description: "Ligne d'horizon emblématique de Manhattan.", details: ["Empire State Building", "Chrysler Building", "Statue de la Liberté", "One WTC"] },
+            { id: 4, setNum: "21032", name: "Sydney", type: "skyline", year: "2017", description: "La magnifique baie de Sydney.", details: ["Opéra de Sydney", "Harbour Bridge", "Sydney Tower"] },
+            { id: 5, setNum: "21033", name: "Chicago", type: "skyline", year: "2017", description: "Architecture audacieuse de Windy City.", details: ["Willis Tower", "John Hancock Center", "Wrigley Building"] },
+            { id: 6, setNum: "21034", name: "Londres", type: "skyline", year: "2017", description: "Symboles royaux et modernes le long de la Tamise.", details: ["Big Ben", "London Eye", "Tower Bridge", "National Gallery"] },
+            { id: 7, setNum: "21039", name: "Shanghai", type: "skyline", year: "2018", description: "Panorama futuriste de la mégalopole chinoise.", details: ["Tour Shanghai", "Perle de l'Orient", "World Financial Center", "Le Bund"] },
+            { id: 8, setNum: "21047", name: "Las Vegas", type: "skyline", year: "2018", description: "Le Strip scintillant et ses hôtels-casinos.", details: ["Bellagio", "Luxor", "Wynn", "Stratosphere", "Panneau Welcome"] },
+            { id: 9, setNum: "21043", name: "San Francisco", type: "skyline", year: "2019", description: "Collines escarpées et pont suspendu.", details: ["Golden Gate Bridge", "Transamerica Pyramid", "Alcatraz", "Painted Ladies"] },
+            { id: 10, setNum: "21044", name: "Paris", type: "skyline", year: "2019", description: "La Ville Lumière et ses monuments.", details: ["Tour Eiffel", "Arc de Triomphe", "Louvre", "Grand Palais"] },
+            { id: 11, setNum: "21051", name: "Tokyo", type: "skyline", year: "2020", description: "Traditions japonaises et technologies.", details: ["Tour Tokyo", "Tokyo Skytree", "Mont Fuji", "Shibuya"] },
+            { id: 12, setNum: "21052", name: "Dubaï", type: "skyline", year: "2020", description: "Gratte-ciels futuristes au cœur du désert.", details: ["Burj Khalifa", "Burj Al Arab", "Emirates Towers", "Dubai Frame"] },
+            { id: 13, setNum: "21057", name: "Singapour", type: "skyline", year: "2022", description: "Merveille d'ingénierie tropicale et moderne.", details: ["Marina Bay Sands", "Gardens by the Bay", "Hôtel Fullerton"] },
+            { id: 14, setNum: "21068", name: "Shanghai (Nouvelle version)", type: "skyline", year: "2025", description: "Réédition modernisée de la skyline.", details: ["Nouvelles tours", "Le Bund illuminé"] },
 
             // GRANDS MONUMENTS
-            { id: 15, setNum: "10294", name: "Le Titanic", type: "monument", year: "2021", image: "https://images.brickset.com/sets/images/10294-1.jpg?rand=145163", description: "Modèle gigantesque du célèbre paquebot à l'échelle 1:200.", details: ["9 090 pièces", "Longueur de 135 cm", "Séparable en 3 sections", "Moteurs à pistons"] },
-            { id: 16, setNum: "21042", name: "La Statue de la Liberté", type: "monument", year: "2018", image: "https://images.brickset.com/sets/images/21042-1.jpg?rand=145163", description: "Reproduction détaillée de Dame Liberty.", details: ["Piédestal détaillé", "Flambeau doré", "Briques texturées"] },
-            { id: 17, setNum: "21056", name: "Le Taj Mahal", type: "monument", year: "2021", image: "https://images.brickset.com/sets/images/21056-1.jpg?rand=145163", description: "Mausolée de marbre blanc.", details: ["Dômes amovibles", "Minarets", "Jardins extérieurs"] },
-            { id: 18, setNum: "21054", name: "La Maison Blanche", type: "monument", year: "2020", image: "https://images.brickset.com/sets/images/21054-1.jpg?rand=145163", description: "Résidence présidentielle à Washington.", details: ["Ailes Est et Ouest", "Colonnade", "Jardins"] },
-            { id: 19, setNum: "21058", name: "La Grande Pyramide de Gizeh", type: "monument", year: "2022", image: "https://images.brickset.com/sets/images/21058-1.jpg?rand=145163", description: "Coupe transversale de la pyramide et abords.", details: ["Tunnels internes", "Le Nil", "Sphinx"] },
-            { id: 20, setNum: "21061", name: "Notre-Dame de Paris", type: "monument", year: "2024", image: "https://images.brickset.com/sets/images/21061-1.jpg?rand=145163", description: "Cathédrale gothique parisienne.", details: ["Flèche emblématique", "Rosaces", "Neuf intérieure"] },
-            { id: 21, setNum: "21045", name: "La Place de Trafalgar", type: "monument", year: "2019", image: "https://images.brickset.com/sets/images/21045-1.jpg?rand=145163", description: "Immersion au cœur de Londres.", details: ["National Gallery", "Colonne Nelson", "Lions"] },
-            { id: 22, setNum: "21060", name: "Le Château de Himeji", type: "monument", year: "2023", image: "https://images.brickset.com/sets/images/21060-1.jpg?rand=145163", description: "Le plus grand château du Japon.", details: ["Toitures authentiques", "Cerisiers en fleurs"] },
-            { id: 23, setNum: "21046", name: "L'Empire State Building", type: "monument", year: "2019", image: "https://images.brickset.com/sets/images/21046-1.jpg?rand=145163", description: "Gratte-ciel new-yorkais grand format.", details: ["Antenne Art déco", "Façade à 360°", "Taxis jaunes"] },
+            { id: 15, setNum: "10294", name: "Le Titanic", type: "monument", year: "2021", description: "Modèle gigantesque du célèbre paquebot à l'échelle 1:200.", details: ["9 090 pièces", "Longueur de 135 cm", "Séparable en 3 sections", "Moteurs à pistons"] },
+            { id: 16, setNum: "21042", name: "La Statue de la Liberté", type: "monument", year: "2018", description: "Reproduction détaillée de Dame Liberty.", details: ["Piédestal détaillé", "Flambeau doré", "Briques texturées"] },
+            { id: 17, setNum: "21056", name: "Le Taj Mahal", type: "monument", year: "2021", description: "Mausolée de marbre blanc.", details: ["Dômes amovibles", "Minarets", "Jardins extérieurs"] },
+            { id: 18, setNum: "21054", name: "La Maison Blanche", type: "monument", year: "2020", description: "Résidence présidentielle à Washington.", details: ["Ailes Est et Ouest", "Colonnade", "Jardins"] },
+            { id: 19, setNum: "21058", name: "La Grande Pyramide de Gizeh", type: "monument", year: "2022", description: "Coupe transversale de la pyramide et abords.", details: ["Tunnels internes", "Le Nil", "Sphinx"] },
+            { id: 20, setNum: "21061", name: "Notre-Dame de Paris", type: "monument", year: "2024", description: "Cathédrale gothique parisienne.", details: ["Flèche emblématique", "Rosaces", "Neuf intérieure"] },
+            { id: 21, setNum: "21045", name: "La Place de Trafalgar", type: "monument", year: "2019", description: "Immersion au cœur de Londres.", details: ["National Gallery", "Colonne Nelson", "Lions"] },
+            { id: 22, setNum: "21060", name: "Le Château de Himeji", type: "monument", year: "2023", description: "Le plus grand château du Japon.", details: ["Toitures authentiques", "Cerisiers en fleurs"] },
+            { id: 23, setNum: "21046", name: "L'Empire State Building", type: "monument", year: "2019", description: "Gratte-ciel new-yorkais grand format.", details: ["Antenne Art déco", "Façade à 360°", "Taxis jaunes"] },
 
             // HARRY POTTER COLLECTOR
-            { id: 24, setNum: "71043", name: "Le Château de Poudlard", type: "harrypotter", year: "2018", image: "https://images.brickset.com/sets/images/71043-1.jpg?rand=145163", description:="La maquette micro-échelle ultime du château de Poudlard avec des milliers de détails magiques.", details: ["Plus de 6 000 pièces", "Grande Salle, cabane d'Hagrid, saule cogneur", "Micro-figurines des professeurs et élèves", "Chambres secrètes"] },
-            { id: 25, setNum: "76419", name: "Le Château et le Domaine de Poudlard", type: "harrypotter", year: "2023", image: "https://images.brickset.com/sets/images/76419-1.jpg?rand=145163", description: "Panorama complet du château et de ses environs rocheux sur un superbe socle d'exposition.", details: ["Tour d'astronomie, lac noir", "Bateau de Durmstrang et calèche de Beauxbâtons", "Plaque nominative Poudlard"] },
-            { id: 26, setNum: "75978", name: "Le Chemin de Traverse", type: "harrypotter", year: "2020", image: "https://images.brickset.com/sets/images/75978-1.jpg?rand=145163", description: "La rue commerçante magique emblématique avec ses boutiques hautement détaillées.", details: ["Boutique Ollivanders, Weasley & Farces pour Sorciers", "Librairie Fleury et Bott", "14 mini-figurines exclusives"] },
-            { id: 27, setNum: "76405", name: "Poudlard Express - Édition Collector", type: "harrypotter", year: "2022", image: "https://images.brickset.com/sets/images/76405-1.jpg?rand=145163", description: "Le train mythique à l'échelle de collection avec sa voie 9 ¾ et ses scènes cultes.", details: ["Échelle 1:32 impressionnante", "Voiture avec scènes lumineuses des films", "20 figurines de collection"] }
-        ];
-
-        let userCollected = JSON.parse(localStorage.getItem('lego_architecture_collected')) || {};
-
-        document.getElementById('total-count').innerText = setsData.length;
-
-        function renderGrid(filter = 'all') {
-            const grid = document.getElementById('sets-grid');
-            grid.innerHTML = '';
-
-            const filtered = filter === 'all' 
-                ? setsData 
-                : setsData.filter(item => item.type === filter);
-
-            filtered.forEach(item => {
-                const isOwned = userCollected[item.setNum] || false;
-                const card = document.createElement('div');
-                card.className = "group bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden hover:border-sky-500/50 transition duration-300 flex flex-col shadow-xl cursor-pointer";
-                card.onclick = () => openModal(item.id);
-
-                let typeBadge = '🏙️ Skyline';
-                if(item.type === 'monument') typeBadge = '🏛️ Monument';
-                if(item.type === 'harrypotter') typeBadge = '⚡ Harry Potter';
-
-                card.innerHTML = `
-                    <div class="relative h-64 overflow-hidden bg-white/5 p-4 flex items-center justify-center">
-                        <img src="${item.image}" alt="Set LEGO ${item.name}" class="max-h-full max-w-full object-contain group-hover:scale-105 transition duration-500" onerror="this.src='https://placehold.co/600x400/0f172a/38bdf8?text=LEGO+${encodeURIComponent(item.name)}'">
-                        <div class="absolute top-4 left-4 bg-slate-950/80 backdrop-blur-md px-3 py-1.5 rounded-xl border border-slate-700/50 text-xs font-bold text-sky-400">
-                            Set ${item.setNum}
-                        </div>
-                        <div class="absolute top-4 right-4 bg-slate-950/80 backdrop-blur-md px-3 py-1.5 rounded-xl border border-slate-700/50 text-xs font-semibold text-slate-300">
-                            ${item.year}
-                        </div>
-                        <div class="absolute bottom-4 left-4 bg-slate-900/90 text-slate-300 px-3 py-1 rounded-full text-xs font-medium border border-slate-700">
-                            ${typeBadge}
-                        </div>
-                        ${isOwned ? '<div class="absolute bottom-4 right-4 bg-emerald-500 text-slate-950 px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1 shadow-lg"><i class="fa-solid fa-check"></i> Possédé</div>' : ''}
-                    </div>
-                    <div class="p-6 flex flex-col flex-grow justify-between">
-                        <div>
-                            <h3 class="text-2xl font-bold text-white group-hover:text-sky-400 transition mb-2">${item.name}</h3>
-                            <p class="text-slate-400 text-sm line-clamp-2">${item.description}</p>
-                        </div>
-                        <div class="mt-6 pt-4 border-t border-slate-800 flex items-center justify-between text-xs font-bold text-sky-400">
-                            <span>Découvrir la boîte & détails</span>
-                            <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition"></i>
-                        </div>
-                    </div>
-                `;
-                grid.appendChild(card);
-            });
-            updateTrackerCount();
-        }
-
-        function filterSets(category) {
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.className = "filter-btn px-5 py-2.5 rounded-xl text-sm font-semibold transition bg-slate-900 text-slate-300 hover:bg-slate-800 border border-slate-800";
-            });
-            const activeBtn = document.querySelector(`[data-filter="${category}"]`);
-            if (activeBtn) {
-                activeBtn.className = "filter-btn px-5 py-2.5 rounded-xl text-sm font-bold transition bg-sky-600 text-white shadow-lg shadow-sky-600/25";
-            }
-            renderGrid(category);
-        }
-
-        function openModal(id) {
-            const item = setsData.find(s => s.id === id);
-            if (!item) return;
-
-            const modal = document.getElementById('set-modal');
-            const content = document.getElementById('modal-content');
-            const isOwned = userCollected[item.setNum] || false;
-            
-            let typeLabel = 'Panorama Skyline';
-            if(item.type === 'monument') typeLabel = 'Grand Monument Historique';
-            if(item.type === 'harrypotter') typeLabel = 'Édition Collector Harry Potter';
-
-            content.innerHTML = `
-                <div class="relative h-72 sm:h-80 bg-white/5 p-6 flex items-center justify-center">
-                    <img src="${item.image}" alt="Set LEGO ${item.name}" class="max-h-full max-w-full object-contain">
-                    <button onclick="closeModal()" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-slate-950/80 backdrop-blur-md text-slate-300 hover:text-white flex items-center justify-center transition border border-slate-800">
-                        <i class="fa-solid fa-xmark text-lg"></i>
-                    </button>
-                    <div class="absolute bottom-4 left-4 bg-slate-950/80 backdrop-blur-md px-4 py-2 rounded-xl border border-slate-800">
-                        <span class="text-xs font-bold text-sky-400 uppercase tracking-widest block">Set ${item.setNum} • ${item.year} (${typeLabel})</span>
-                        <h2 class="text-2xl font-extrabold text-white">${item.name}</h2>
-                    </div>
-                </div>
-                <div class="p-6 sm:p-8 space-y-6">
-                    <div>
-                        <h4 class="text-sm font-bold uppercase tracking-wider text-slate-400 mb-2">À propos de ce set</h4>
-                        <p class="text-slate-300 leading-relaxed">${item.description}</p>
-                    </div>
-                    <div>
-                        <h4 class="text-sm font-bold uppercase tracking-wider text-sky-400 mb-3"><i class="fa-solid fa-landmark mr-2"></i>Éléments remarquables</h4>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                            ${item.details.map(d => `<div class="bg-slate-950/60 border border-slate-800 px-4 py-2.5 rounded-xl text-sm font-medium text-slate-200 flex items-center gap-2"><i class="fa-solid fa-circle-dot text-sky-500 text-xs"></i>${d}</div>`).join('')}
-                        </div>
-                    </div>
-                    <div class="pt-4 border-t border-slate-800 flex items-center justify-between">
-                        <label class="flex items-center gap-3 cursor-pointer">
-                            <input type="checkbox" ${isOwned ? 'checked' : ''} onchange="toggleOwnership('${item.setNum}')" class="w-5 h-5 accent-sky-500 rounded cursor-pointer">
-                            <span class="text-sm font-bold text-slate-200">Je possède ce set dans ma collection</span>
-                        </label>
-                        <button onclick="closeModal()" class="bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold px-5 py-2 rounded-xl transition text-sm">Fermer</button>
-                    </div>
-                </div>
-            `;
-
-            modal.classList.remove('opacity-0', 'pointer-events-none');
-            modal.querySelector('#modal-content').classList.remove('scale-95');
-        }
-
-        function closeModal() {
-            const modal = document.getElementById('set-modal');
-            modal.classList.add('opacity-0', 'pointer-events-none');
-            modal.querySelector('#modal-content').classList.add('scale-95');
-            renderGrid(document.querySelector('.filter-btn.bg-sky-600')?.getAttribute('data-filter') || 'all');
-        }
-
-        function toggleOwnership(setNum) {
-            userCollected[setNum] = !userCollected[setNum];
-            localStorage.setItem('lego_architecture_collected', JSON.stringify(userCollected));
-            updateTrackerCount();
-        }
-
-        function updateTrackerCount() {
-            const ownedCount = Object.values(userCollected).filter(Boolean).length;
-            document.getElementById('tracker-count').innerText = ownedCount;
-        }
-
-        function openTrackerModal() {
-            const modal = document.getElementById('tracker-modal');
-            const list = document.getElementById('tracker-list');
-            list.innerHTML = '';
-
-            setsData.forEach(item => {
-                const isOwned = userCollected[item.setNum] || false;
-                const row = document.createElement('label');
-                row.className = "flex items-center justify-between p-3.5 bg-slate-950/50 border border-slate-800 rounded-2xl hover:border-slate-700 transition cursor-pointer";
-                row.innerHTML = `
-                    <div class="flex items-center gap-3">
-                        <input type="checkbox" ${isOwned ? 'checked' : ''} onchange="toggleTrackerItem('${item.setNum}', this.checked)" class="w-5 h-5 accent-sky-500 rounded cursor-pointer">
-                        <div>
-                            <span class="text-xs font-bold text-sky-400">Set ${item.setNum} (${item.year})</span>
-                            <h4 class="text-white font-semibold text-sm">${item.name}</h4>
-                        </div>
-                    </div>
-                    <span class="text-xs px-2.5 py-1 rounded-full ${isOwned ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-slate-800 text-slate-400'}">${isOwned ? 'Possédé' : 'Manquant'}</span>
-                `;
-                list.appendChild(row);
-            });
-
-            updateTrackerSummary();
-            modal.classList.remove('opacity-0', 'pointer-events-none');
-            modal.querySelector('div').classList.remove('scale-95');
-        }
-
-        function closeTrackerModal() {
-            const modal = document.getElementById('tracker-modal');
-            modal.classList.add('opacity-0', 'pointer-events-none');
-            modal.querySelector('div').classList.add('scale-95');
-            renderGrid(document.querySelector('.filter-btn.bg-sky-600')?.getAttribute('data-filter') || 'all');
-        }
-
-        function toggleTrackerItem(setNum, isChecked) {
-            userCollected[setNum] = isChecked;
-            localStorage.setItem('lego_architecture_collected', JSON.stringify(userCollected));
-            updateTrackerSummary();
-            updateTrackerCount();
-        }
-
-        function updateTrackerSummary() {
-            const ownedCount = Object.values(userCollected).filter(Boolean).length;
-            document.getElementById('tracker-summary').innerText = `${ownedCount} sur ${setsData.length} sets possédés`;
-        }
-
-        window.onload = function() {
-            renderGrid('all');
-        };
-    </script>
-</body>
-</html>
+            { id: 24, setNum: "71043", name: "Le Château de Poudlard", type: "harrypotter", year: "2018", description: "La maquette micro-échelle ultime du château de Poudlard avec des milliers de détails magiques.", details: ["Plus de 6 000 pièces", "Grande Salle, cabane d'Hagrid, saule cogneur", "Micro-figurines des professeurs et élèves", "Chambres secrètes"] },
+            { id: 25, setNum: "76419", name: "Le Château et le Domaine de Poudlard", type: "harrypotter", year: "2023", description: "Panorama complet du château et de ses environs rocheux sur un superbe socle d'exposition.", details: ["Tour d'astronomie, lac noir", "Bateau de Durmstrang et calèche de Beauxbâtons", "Plaque nominative Poudlard"] },
+            { id: 26, setNum: "75978", name: "Le Chemin de Traverse", type: "harrypotter", year: "2020", description: "La rue commerçante magique emblématique avec ses boutiques hautement détaillées.", details: ["Boutique Ollivanders, Weasley & Farces pour Sorciers", "Librairie Fleury et Bott", "14 mini-figurines exclusives"] },
+            { id: 27, setNum: "76405", name: "Poudlard Express - Édition Collector", type: "harrypotter", year: "2022", description: "Le train mythique à l'échelle de collection avec sa voie 9 ¾ et
