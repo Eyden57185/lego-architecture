@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LEGO Architecture - Collection Complète (Skylines & Monuments)</title>
+    <title>LEGO Architecture & Harry Potter - Collection Complète</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -40,7 +40,7 @@
                     <i class="fa-solid fa-city text-white text-lg"></i>
                 </div>
                 <div>
-                    <span class="text-xs font-extrabold uppercase tracking-widest text-sky-400">LEGO Architecture</span>
+                    <span class="text-xs font-extrabold uppercase tracking-widest text-sky-400">LEGO Architecture & Magie</span>
                     <h1 class="text-lg font-bold text-white tracking-tight">Collection Complète</h1>
                 </div>
             </div>
@@ -58,13 +58,13 @@
         <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#38bdf8_1px,transparent_1px)] [background-size:16px_16px]"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
             <span class="inline-block py-1 px-3 rounded-full bg-sky-500/10 border border-sky-500/20 text-sky-400 text-xs font-bold tracking-widest uppercase mb-4">
-                Guide Interactif Officiel (Skylines & Monuments Célèbres)
+                Guide Interactif Officiel (Skylines, Monuments & Harry Potter)
             </span>
             <h2 class="text-4xl sm:text-6xl font-extrabold text-white tracking-tight max-w-4xl mx-auto mb-6">
-                Tous les sets LEGO Architecture : Villes et Monuments Légendaires
+                Tous les sets LEGO Architecture & Éditions Collector Harry Potter
             </h2>
             <p class="text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto mb-10">
-                Explorez l'intégralité des panoramas urbains et des grands monuments historiques de la gamme avec leurs boîtes d'origine.
+                Explorez l'intégralité des panoramas, monuments historiques et des grands châteaux magiques de la collection.
             </p>
 
             <!-- Filter Tabs -->
@@ -76,7 +76,10 @@
                     🏙️ Skylines (Mini Villes)
                 </button>
                 <button onclick="filterSets('monument')" data-filter="monument" class="filter-btn px-5 py-2.5 rounded-xl text-sm font-semibold transition bg-slate-900 text-slate-300 hover:bg-slate-800 border border-slate-800">
-                    🏛️ Grands Monuments (Gros Sets)
+                    🏛️ Grands Monuments
+                </button>
+                <button onclick="filterSets('harrypotter')" data-filter="harrypotter" class="filter-btn px-5 py-2.5 rounded-xl text-sm font-semibold transition bg-slate-900 text-slate-300 hover:bg-slate-800 border border-slate-800">
+                    ⚡ Harry Potter Collector
                 </button>
             </div>
         </div>
@@ -99,7 +102,7 @@
             <div class="p-6 border-b border-slate-800 flex items-center justify-between">
                 <div>
                     <span class="text-xs font-bold text-sky-400 uppercase tracking-widest">Suivi personnel</span>
-                    <h3 class="text-xl font-bold text-white">Ma Collection LEGO Architecture</h3>
+                    <h3 class="text-xl font-bold text-white">Ma Collection LEGO</h3>
                 </div>
                 <button onclick="closeTrackerModal()" class="w-10 h-10 rounded-full bg-slate-800 text-slate-400 hover:text-white flex items-center justify-center transition">
                     <i class="fa-solid fa-xmark text-lg"></i>
@@ -118,244 +121,43 @@
     </div>
 
     <footer class="bg-slate-900 border-t border-slate-800 py-12 text-center text-slate-500 text-sm">
-        <p>© 2026 LEGO Architecture Fan Showcase. Conçu avec passion pour les amateurs de briques et d'architecture.</p>
+        <p>© 2026 LEGO Architecture & Harry Potter Fan Showcase. Conçu avec passion.</p>
     </footer>
 
     <script>
         const setsData = [
             // SKYLINES
-            {
-                id: 1,
-                setNum: "21026",
-                name: "Venise",
-                type: "skyline",
-                year: "2016",
-                image: "https://images.brickset.com/sets/images/21026-1.jpg?rand=145163",
-                description: "Capturez la beauté magique des canaux et des monuments vénitiens historiques avec ce set de la première vague Skylines.",
-                details: ["Le Campanile de Saint-Marc", "La Basilique Saint-Marc", "Le Pont du Rialto", "Le Pont des Soupirs"]
-            },
-            {
-                id: 2,
-                setNum: "21027",
-                name: "Berlin",
-                type: "skyline",
-                year: "2016",
-                image: "https://images.brickset.com/sets/images/21027-1.jpg?rand=145163",
-                description: "Un hommage saisissant à la capitale allemande, combinant monuments historiques et symboles de la réunification.",
-                details: ["La Porte de Brandebourg", "La Tour de la Télévision", "Le Reichstag", "Le Mémorial du Mur de Berlin"]
-            },
-            {
-                id: 3,
-                setNum: "21028",
-                name: "New York City",
-                type: "skyline",
-                year: "2016",
-                image: "https://images.brickset.com/sets/images/21028-1.jpg?rand=145163",
-                description: "Le set Skyline le plus emblématique représentant la ligne d'horizon de Manhattan.",
-                details: ["L'Empire State Building", "Le Chrysler Building", "La Statue de la Liberté", "Le One World Trade Center", "Le Flatiron Building"]
-            },
-            {
-                id: 4,
-                setNum: "21032",
-                name: "Sydney",
-                type: "skyline",
-                year: "2017",
-                image: "https://images.brickset.com/sets/images/21032-1.jpg?rand=145163",
-                description: "Cap sur l'hémisphère sud avec la magnifique baie de Sydney et ses voiles d'architecture légendaires.",
-                details: ["L'Opéra de Sydney", "Le Sydney Harbour Bridge", "La Sydney Tower", "Quartier central des affaires"]
-            },
-            {
-                id: 5,
-                setNum: "21033",
-                name: "Chicago",
-                type: "skyline",
-                year: "2017",
-                image: "https://images.brickset.com/sets/images/21033-1.jpg?rand=145163",
-                description: "Célébrez l'architecture audacieuse de Windy City avec ses gratte-ciels pionniers le long de la rivière.",
-                details: ["La Willis Tower", "Le John Hancock Center", "Le Wrigley Building", "La tour Aqua", "Le pont de DuSable"]
-            },
-            {
-                id: 6,
-                setNum: "21034",
-                name: "Londres",
-                type: "skyline",
-                year: "2017",
-                image: "https://images.brickset.com/sets/images/21034-1.jpg?rand=145163",
-                description: "Une vue imprenable sur la Tamise regroupant les symboles royaux et modernes de la capitale britannique.",
-                details: ["Big Ben (Tour Élisabeth)", "Le London Eye", "Le Tower Bridge", "La National Gallery", "La Colonne Nelson"]
-            },
-            {
-                id: 7,
-                setNum: "21039",
-                name: "Shanghai",
-                type: "skyline",
-                year: "2018",
-                image: "https://images.brickset.com/sets/images/21039-1.jpg?rand=145163",
-                description: "Un panorama futuriste et coloré mettant en scène la modernité fulgurante de la mégalopole chinoise.",
-                details: ["La Tour Shanghai", "La Perle de l'Orient", "Le World Financial Center", "Le Bund", "Le temple de Longhua"]
-            },
-            {
-                id: 8,
-                setNum: "21047",
-                name: "Las Vegas",
-                type: "skyline",
-                year: "2018",
-                image: "https://images.brickset.com/sets/images/21047-1.jpg?rand=145163",
-                description: "Le Strip scintillant et ses hôtels-casinos extravagants reproduits en briques aux couleurs éclatantes.",
-                details: ["Hôtel Bellagio", "Hôtel Luxor", "Hôtel Wynn", "Tour Stratosphere", "Panneau Welcome to Fabulous Las Vegas"]
-            },
-            {
-                id: 9,
-                setNum: "21043",
-                name: "San Francisco",
-                type: "skyline",
-                year: "2019",
-                image: "https://images.brickset.com/sets/images/21043-1.jpg?rand=145163",
-                description: "Entre collines escarpées, pont suspendu mondialement connu et architecture victorienne pittoresque.",
-                details: ["Le Golden Gate Bridge", "La Transamerica Pyramid", "La prison d'Alcatraz", "Les Painted Ladies", "Lombard Street"]
-            },
-            {
-                id: 10,
-                setNum: "21044",
-                name: "Paris",
-                type: "skyline",
-                year: "2019",
-                image: "https://images.brickset.com/sets/images/21044-1.jpg?rand=145163",
-                description: "La Ville Lumière dans toute sa splendeur à travers ses monuments les plus prestigieux.",
-                details: ["La Tour Eiffel", "L'Arc de Triomphe", "Le Musée du Louvre", "Le Grand Palais", "Les Champs-Élysées"]
-            },
-            {
-                id: 11,
-                setNum: "21051",
-                name: "Tokyo",
-                type: "skyline",
-                year: "2020",
-                image: "https://images.brickset.com/sets/images/21051-1.jpg?rand=145163",
-                description: "Un set poétique et vibrant combinant traditions japonaises et technologies urbaines avant-gardistes.",
-                details: ["La Tour Tokyo", "La Tokyo Skytree", "Le Mont Fuji", "Le carrefour de Shibuya", "La pagode Chureito"]
-            },
-            {
-                id: 12,
-                setNum: "21052",
-                name: "Dubaï",
-                type: "skyline",
-                year: "2020",
-                image: "https://images.brickset.com/sets/images/21052-1.jpg?rand=145163",
-                description: "Des gratte-ciels aux formes futuristes défiant les lois de la gravité au cœur du désert.",
-                details: ["Le Burj Khalifa", "L'hôtel Burj Al Arab", "Les Emirates Towers", "Le Dubai Frame", "La fontaine de Dubaï"]
-            },
-            {
-                id: 13,
-                setNum: "21057",
-                name: "Singapour",
-                type: "skyline",
-                year: "2022",
-                image: "https://images.brickset.com/sets/images/21057-1.jpg?rand=145163",
-                description: "Une merveille d'ingénierie tropicale et moderne, couronnée par les célèbres super-arbres.",
-                details: ["Le Marina Bay Sands", "Gardens by the Bay", "L'Hôtel Fullerton", "Le OCBC Centre", "La Singapore River"]
-            },
-            {
-                id: 14,
-                setNum: "21068",
-                name: "Shanghai (Nouvelle version)",
-                type: "skyline",
-                year: "2025",
-                image: "https://images.brickset.com/sets/images/21039-1.jpg?rand=145163",
-                description: "Une réédition modernisée et enrichie de la skyline de Shanghai.",
-                details: ["Nouvelles tours financières", "Le Bund illuminé", "Les ponts modernes sur le Huangpu"]
-            },
+            { id: 1, setNum: "21026", name: "Venise", type: "skyline", year: "2016", image: "https://images.brickset.com/sets/images/21026-1.jpg?rand=145163", description: "Canaux et monuments vénitiens historiques.", details: ["Campanile de Saint-Marc", "Basilique Saint-Marc", "Pont du Rialto", "Pont des Soupirs"] },
+            { id: 2, setNum: "21027", name: "Berlin", type: "skyline", year: "2016", image: "https://images.brickset.com/sets/images/21027-1.jpg?rand=145163", description: "Hommage à la capitale allemande.", details: ["Porte de Brandebourg", "Tour de la Télévision", "Reichstag", "Mémorial du Mur"] },
+            { id: 3, setNum: "21028", name: "New York City", type: "skyline", year: "2016", image: "https://images.brickset.com/sets/images/21028-1.jpg?rand=145163", description: "Ligne d'horizon emblématique de Manhattan.", details: ["Empire State Building", "Chrysler Building", "Statue de la Liberté", "One WTC"] },
+            { id: 4, setNum: "21032", name: "Sydney", type: "skyline", year: "2017", image: "https://images.brickset.com/sets/images/21032-1.jpg?rand=145163", description: "La magnifique baie de Sydney.", details: ["Opéra de Sydney", "Harbour Bridge", "Sydney Tower"] },
+            { id: 5, setNum: "21033", name: "Chicago", type: "skyline", year: "2017", image: "https://images.brickset.com/sets/images/21033-1.jpg?rand=145163", description: "Architecture audacieuse de Windy City.", details: ["Willis Tower", "John Hancock Center", "Wrigley Building"] },
+            { id: 6, setNum: "21034", name: "Londres", type: "skyline", year: "2017", image: "https://images.brickset.com/sets/images/21034-1.jpg?rand=145163", description: "Symboles royaux et modernes le long de la Tamise.", details: ["Big Ben", "London Eye", "Tower Bridge", "National Gallery"] },
+            { id: 7, setNum: "21039", name: "Shanghai", type: "skyline", year: "2018", image: "https://images.brickset.com/sets/images/21039-1.jpg?rand=145163", description: "Panorama futuriste de la mégalopole chinoise.", details: ["Tour Shanghai", "Perle de l'Orient", "World Financial Center", "Le Bund"] },
+            { id: 8, setNum: "21047", name: "Las Vegas", type: "skyline", year: "2018", image: "https://images.brickset.com/sets/images/21047-1.jpg?rand=145163", description: "Le Strip scintillant et ses hôtels-casinos.", details: ["Bellagio", "Luxor", "Wynn", "Stratosphere", "Panneau Welcome"] },
+            { id: 9, setNum: "21043", name: "San Francisco", type: "skyline", year: "2019", image: "https://images.brickset.com/sets/images/21043-1.jpg?rand=145163", description: "Collines escarpées et pont suspendu.", details: ["Golden Gate Bridge", "Transamerica Pyramid", "Alcatraz", "Painted Ladies"] },
+            { id: 10, setNum: "21044", name: "Paris", type: "skyline", year: "2019", image: "https://images.brickset.com/sets/images/21044-1.jpg?rand=145163", description: "La Ville Lumière et ses monuments.", details: ["Tour Eiffel", "Arc de Triomphe", "Louvre", "Grand Palais"] },
+            { id: 11, setNum: "21051", name: "Tokyo", type: "skyline", year: "2020", image: "https://images.brickset.com/sets/images/21051-1.jpg?rand=145163", description: "Traditions japonaises et technologies.", details: ["Tour Tokyo", "Tokyo Skytree", "Mont Fuji", "Shibuya"] },
+            { id: 12, setNum: "21052", name: "Dubaï", type: "skyline", year: "2020", image: "https://images.brickset.com/sets/images/21052-1.jpg?rand=145163", description: "Gratte-ciels futuristes au cœur du désert.", details: ["Burj Khalifa", "Burj Al Arab", "Emirates Towers", "Dubai Frame"] },
+            { id: 13, setNum: "21057", name: "Singapour", type: "skyline", year: "2022", image: "https://images.brickset.com/sets/images/21057-1.jpg?rand=145163", description: "Merveille d'ingénierie tropicale et moderne.", details: ["Marina Bay Sands", "Gardens by the Bay", "Hôtel Fullerton"] },
+            { id: 14, setNum: "21068", name: "Shanghai (Nouvelle version)", type: "skyline", year: "2025", image: "https://images.brickset.com/sets/images/21039-1.jpg?rand=145163", description: "Réédition modernisée de la skyline.", details: ["Nouvelles tours", "Le Bund illuminé"] },
 
-            // GRANDS MONUMENTS & SETS COLLECTOR
-            {
-                id: 15,
-                setNum: "10294",
-                name: "Le Titanic",
-                type: "monument",
-                year: "2021",
-                image: "https://images.brickset.com/sets/images/10294-1.jpg?rand=145163",
-                description: "L'un des plus grands et plus longs modèles LEGO jamais créés, reproduction fidèle du célèbre paquebot à l'échelle 1:200.",
-                details: ["Plus de 9 000 pièces (9 090)", "Longueur gigantesque de 135 cm", "Modèle séparable en 3 sections révélant l'intérieur", "Moteurs à pistons fonctionnels connectés aux hélices"]
-            },
-            {
-                id: 16,
-                setNum: "21042",
-                name: "La Statue de la Liberté",
-                type: "monument",
-                year: "2018",
-                image: "https://images.brickset.com/sets/images/21042-1.jpg?rand=145163",
-                description: "Reproduction détaillée de Dame Liberty avec son piédestal bouclé et sa torche iconique.",
-                details: ["Piédestal richement détaillé", "Flambeau doré", "Drapeau américain et briques texturées", "Hauteur impressionnante de collection"]
-            },
-            {
-                id: 17,
-                setNum: "21056",
-                name: "Le Taj Mahal",
-                type: "monument",
-                year: "2021",
-                image: "https://images.brickset.com/sets/images/21056-1.jpg?rand=145163",
-                description: "Le célèbre mausolée de marbre blanc reproduit avec un réalisme à couper le souffle.",
-                details: ["Dômes et cryptes amovibles", "Minarets majestueux", "Jardins extérieurs", "Chambres funéraires intérieures"]
-            },
-            {
-                id: 18,
-                setNum: "21054",
-                name: "La Maison Blanche",
-                type: "monument",
-                year: "2020",
-                image: "https://images.brickset.com/sets/images/21054-1.jpg?rand=145163",
-                description: "La célèbre résidence présidentielle américaine à Washington D.C.",
-                details: ["Ailes Est et Ouest", "Colonnade néoclassique", "Jardins et fontaine", "Séparable en plusieurs sections pour voir l'intérieur"]
-            },
-            {
-                id: 19,
-                setNum: "21058",
-                name: "La Grande Pyramide de Gizeh",
-                type: "monument",
-                year: "2022",
-                image: "https://images.brickset.com/sets/images/21058-1.jpg?rand=145163",
-                description: "Voyagez dans l'Égypte ancienne avec cette coupe transversale de la pyramide et ses abords.",
-                details: ["Structure extérieure amovible révélant les tunnels internes", "Le Nil avec des felouques", "Le village des ouvriers", "Sphinx et temples funéraires"]
-            },
-            {
-                id: 20,
-                setNum: "21061",
-                name: "Notre-Dame de Paris",
-                type: "monument",
-                year: "2024",
-                image: "https://images.brickset.com/sets/images/21061-1.jpg?rand=145163",
-                description: "Hommage architectural magistral à la cathédrale gothique parisienne.",
-                details: ["Clochers et flèche emblématique", "Rosaces gothiques", "Intérieur détaillé avec les nefs", "Arbres le long de la Seine"]
-            },
-            {
-                id: 21,
-                setNum: "21045",
-                name: "La Place de Trafalgar",
-                type: "monument",
-                year: "2019",
-                image: "https://images.brickset.com/sets/images/21045-1.jpg?rand=145163",
-                description: "Immersion au cœur de Londres avec l'une des places les plus célèbres au monde.",
-                details: ["La National Gallery", "La Colonne Nelson et les lions", "Fontaines et bus à impériale rouges"]
-            },
-            {
-                id: 22,
-                setNum: "21060",
-                name: "Le Château de Himeji",
-                type: "monument",
-                year: "2023",
-                image: "https://images.brickset.com/sets/images/21060-1.jpg?rand=145163",
-                description: "Le plus grand château du Japon, surnommé le « Héron blanc ».",
-                details: ["Tours et toitures authentiques", "Cerisiers en fleurs (sakuras)", "Jardin japonais traditionnel"]
-            },
-            {
-                id: 23,
-                setNum: "21046",
-                name: "L'Empire State Building",
-                type: "monument",
-                year: "2019",
-                image: "https://images.brickset.com/sets/images/21046-1.jpg?rand=145163",
-                description: "La version grand format et ultra-détaillée du gratte-ciel new-yorkais.",
-                details: ["Antenne Art déco", "Façade à 360 degrés", "Plaque nominative inclue", "Taxis jaunes au pied de l'édifice"]
-            }
+            // GRANDS MONUMENTS
+            { id: 15, setNum: "10294", name: "Le Titanic", type: "monument", year: "2021", image: "https://images.brickset.com/sets/images/10294-1.jpg?rand=145163", description: "Modèle gigantesque du célèbre paquebot à l'échelle 1:200.", details: ["9 090 pièces", "Longueur de 135 cm", "Séparable en 3 sections", "Moteurs à pistons"] },
+            { id: 16, setNum: "21042", name: "La Statue de la Liberté", type: "monument", year: "2018", image: "https://images.brickset.com/sets/images/21042-1.jpg?rand=145163", description: "Reproduction détaillée de Dame Liberty.", details: ["Piédestal détaillé", "Flambeau doré", "Briques texturées"] },
+            { id: 17, setNum: "21056", name: "Le Taj Mahal", type: "monument", year: "2021", image: "https://images.brickset.com/sets/images/21056-1.jpg?rand=145163", description: "Mausolée de marbre blanc.", details: ["Dômes amovibles", "Minarets", "Jardins extérieurs"] },
+            { id: 18, setNum: "21054", name: "La Maison Blanche", type: "monument", year: "2020", image: "https://images.brickset.com/sets/images/21054-1.jpg?rand=145163", description: "Résidence présidentielle à Washington.", details: ["Ailes Est et Ouest", "Colonnade", "Jardins"] },
+            { id: 19, setNum: "21058", name: "La Grande Pyramide de Gizeh", type: "monument", year: "2022", image: "https://images.brickset.com/sets/images/21058-1.jpg?rand=145163", description: "Coupe transversale de la pyramide et abords.", details: ["Tunnels internes", "Le Nil", "Sphinx"] },
+            { id: 20, setNum: "21061", name: "Notre-Dame de Paris", type: "monument", year: "2024", image: "https://images.brickset.com/sets/images/21061-1.jpg?rand=145163", description: "Cathédrale gothique parisienne.", details: ["Flèche emblématique", "Rosaces", "Neuf intérieure"] },
+            { id: 21, setNum: "21045", name: "La Place de Trafalgar", type: "monument", year: "2019", image: "https://images.brickset.com/sets/images/21045-1.jpg?rand=145163", description: "Immersion au cœur de Londres.", details: ["National Gallery", "Colonne Nelson", "Lions"] },
+            { id: 22, setNum: "21060", name: "Le Château de Himeji", type: "monument", year: "2023", image: "https://images.brickset.com/sets/images/21060-1.jpg?rand=145163", description: "Le plus grand château du Japon.", details: ["Toitures authentiques", "Cerisiers en fleurs"] },
+            { id: 23, setNum: "21046", name: "L'Empire State Building", type: "monument", year: "2019", image: "https://images.brickset.com/sets/images/21046-1.jpg?rand=145163", description: "Gratte-ciel new-yorkais grand format.", details: ["Antenne Art déco", "Façade à 360°", "Taxis jaunes"] },
+
+            // HARRY POTTER COLLECTOR
+            { id: 24, setNum: "71043", name: "Le Château de Poudlard", type: "harrypotter", year: "2018", image: "https://images.brickset.com/sets/images/71043-1.jpg?rand=145163", description:="La maquette micro-échelle ultime du château de Poudlard avec des milliers de détails magiques.", details: ["Plus de 6 000 pièces", "Grande Salle, cabane d'Hagrid, saule cogneur", "Micro-figurines des professeurs et élèves", "Chambres secrètes"] },
+            { id: 25, setNum: "76419", name: "Le Château et le Domaine de Poudlard", type: "harrypotter", year: "2023", image: "https://images.brickset.com/sets/images/76419-1.jpg?rand=145163", description: "Panorama complet du château et de ses environs rocheux sur un superbe socle d'exposition.", details: ["Tour d'astronomie, lac noir", "Bateau de Durmstrang et calèche de Beauxbâtons", "Plaque nominative Poudlard"] },
+            { id: 26, setNum: "75978", name: "Le Chemin de Traverse", type: "harrypotter", year: "2020", image: "https://images.brickset.com/sets/images/75978-1.jpg?rand=145163", description: "La rue commerçante magique emblématique avec ses boutiques hautement détaillées.", details: ["Boutique Ollivanders, Weasley & Farces pour Sorciers", "Librairie Fleury et Bott", "14 mini-figurines exclusives"] },
+            { id: 27, setNum: "76405", name: "Poudlard Express - Édition Collector", type: "harrypotter", year: "2022", image: "https://images.brickset.com/sets/images/76405-1.jpg?rand=145163", description: "Le train mythique à l'échelle de collection avec sa voie 9 ¾ et ses scènes cultes.", details: ["Échelle 1:32 impressionnante", "Voiture avec scènes lumineuses des films", "20 figurines de collection"] }
         ];
 
         let userCollected = JSON.parse(localStorage.getItem('lego_architecture_collected')) || {};
@@ -376,7 +178,9 @@
                 card.className = "group bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden hover:border-sky-500/50 transition duration-300 flex flex-col shadow-xl cursor-pointer";
                 card.onclick = () => openModal(item.id);
 
-                const typeBadge = item.type === 'skyline' ? '🏙️ Skyline' : '🏛️ Monument';
+                let typeBadge = '🏙️ Skyline';
+                if(item.type === 'monument') typeBadge = '🏛️ Monument';
+                if(item.type === 'harrypotter') typeBadge = '⚡ Harry Potter';
 
                 card.innerHTML = `
                     <div class="relative h-64 overflow-hidden bg-white/5 p-4 flex items-center justify-center">
@@ -426,7 +230,10 @@
             const modal = document.getElementById('set-modal');
             const content = document.getElementById('modal-content');
             const isOwned = userCollected[item.setNum] || false;
-            const typeLabel = item.type === 'skyline' ? 'Panorama Skyline' : 'Grand Monument Historique';
+            
+            let typeLabel = 'Panorama Skyline';
+            if(item.type === 'monument') typeLabel = 'Grand Monument Historique';
+            if(item.type === 'harrypotter') typeLabel = 'Édition Collector Harry Potter';
 
             content.innerHTML = `
                 <div class="relative h-72 sm:h-80 bg-white/5 p-6 flex items-center justify-center">
