@@ -157,4 +157,145 @@
             { id: 24, setNum: "71043", name: "Le Château de Poudlard", type: "harrypotter", year: "2018", description: "La maquette micro-échelle ultime du château de Poudlard avec des milliers de détails magiques.", details: ["Plus de 6 000 pièces", "Grande Salle, cabane d'Hagrid, saule cogneur", "Micro-figurines des professeurs et élèves", "Chambres secrètes"] },
             { id: 25, setNum: "76419", name: "Le Château et le Domaine de Poudlard", type: "harrypotter", year: "2023", description: "Panorama complet du château et de ses environs rocheux sur un superbe socle d'exposition.", details: ["Tour d'astronomie, lac noir", "Bateau de Durmstrang et calèche de Beauxbâtons", "Plaque nominative Poudlard"] },
             { id: 26, setNum: "75978", name: "Le Chemin de Traverse", type: "harrypotter", year: "2020", description: "La rue commerçante magique emblématique avec ses boutiques hautement détaillées.", details: ["Boutique Ollivanders, Weasley & Farces pour Sorciers", "Librairie Fleury et Bott", "14 mini-figurines exclusives"] },
-            { id: 27, setNum: "76405", name: "Poudlard Express - Édition Collector", type: "harrypotter", year: "2022", description: "Le train mythique à l'échelle de collection avec sa voie 9 ¾ et
+            { id: 27, setNum: "76405", name: "Poudlard Express - Édition Collector", type: "harrypotter", year: "2022", description: "Le train mythique à l'échelle de collection avec sa voie 9 ¾ et ses scènes cultes.", details: ["Échelle 1:32 impressionnante", "Voiture avec scènes lumineuses des films", "20 figurines de collection"] }
+        ];
+
+        let userCollected = JSON.parse(localStorage.getItem('lego_architecture_collected')) || {};
+
+        document.getElementById('total-count').innerText = setsData.length;
+
+        function renderGrid(filter = 'all') {
+            const grid = document.getElementById('sets-grid');
+            if (!grid) return;
+            grid.innerHTML = '';
+
+            const filtered = filter === 'all' 
+                ? setsData 
+                : setsData.filter(item => item.type === filter);
+
+            filtered.forEach(item => {
+                const isOwned = userCollected[item.setNum] || false;
+                const card = document.createElement('div');
+                card.className = "group bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden hover:border-sky-500/50 transition duration-300 flex flex-col shadow-xl cursor-pointer";
+                card.onclick = () => openModal(item.id);
+
+                let typeBadge = '🏙️ Skyline';
+                if(item.type === 'monument') typeBadge = '🏛️ Monument';
+                if(item.type === 'harrypotter') typeBadge = '⚡ Harry Potter';
+
+                card.innerHTML = `
+                    <div class="relative h-64 overflow-hidden bg-gradient-to-br from-slate-900 to-slate-800 p-6 flex flex-col items-center justify-center text-center">
+                        <div class="w-16 h-16 rounded-2xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400 text-2xl font-extrabold mb-3 group-hover:scale-110 transition">
+                            <i class="fa-solid fa-cube"></i>
+                        </div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-sky-400/80 mb-1">Set LEGO® ${item.setNum}</span>
+                        <h4 class="text-lg font-bold text-white px-2">${item.name}</h4>
+                        <div class="absolute top-4 left-4 bg-slate-950/80 backdrop-blur-md px-3 py-1.5 rounded-xl border border-slate-700/50 text-xs font-bold text-sky-400">
+                            ${item.year}
+                        </div>
+                        <div class="absolute bottom-4 left-4 bg-slate-950/80 text-slate-300 px-3 py-1 rounded-full text-xs font-medium border border-slate-800">
+                            ${typeBadge}
+                        </div>
+                        ${isOwned ? '<div class="absolute bottom-4 right-4 bg-emerald-500 text-slate-950 px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1 shadow-lg"><i class="fa-solid fa-check"></i> Possédé</div>' : ''}
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow justify-between">
+                        <p class="text-slate-400 text-sm line-clamp-2">${item.description}</p>
+                        <div class="mt-6 pt-4 border-t border-slate-800 flex items-center justify-between text-xs font-bold text-sky-400">
+                            <span>Découvrir les détails & éléments</span>
+                            <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition"></i>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+            updateTrackerCount();
+        }
+
+        function filterSets(category) {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.className = "filter-btn px-5 py-2.5 rounded-xl text-sm font-semibold transition bg-slate-900 text-slate-300 hover:bg-slate-800 border border-slate-800";
+            });
+            const activeBtn = document.querySelector(`[data-filter="${category}"]`);
+            if (activeBtn) {
+                activeBtn.className = "filter-btn px-5 py-2.5 rounded-xl text-sm font-bold transition bg-sky-600 text-white shadow-lg shadow-sky-600/25";
+            }
+            renderGrid(category);
+        }
+
+        function openModal(id) {
+            const item = setsData.find(s => s.id === id);
+            if (!item) return;
+
+            const modal = document.getElementById('set-modal');
+            const content = document.getElementById('modal-content');
+            const isOwned = userCollected[item.setNum] || false;
+            
+            let typeLabel = 'Panorama Skyline';
+            if(item.type === 'monument') typeLabel = 'Grand Monument Historique';
+            if(item.type === 'harrypotter') typeLabel = 'Édition Collector Harry Potter';
+
+            content.innerHTML = `
+                <div class="relative h-60 bg-gradient-to-tr from-sky-950 via-slate-900 to-indigo-950 p-6 flex flex-col items-center justify-center text-center border-b border-slate-800">
+                    <button onclick="closeModal()" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-slate-950/80 backdrop-blur-md text-slate-300 hover:text-white flex items-center justify-center transition border border-slate-800">
+                        <i class="fa-solid fa-xmark text-lg"></i>
+                    </button>
+                    <span class="text-xs font-bold text-sky-400 uppercase tracking-widest mb-1">Set ${item.setNum} • ${item.year} (${typeLabel})</span>
+                    <h2 class="text-3xl font-extrabold text-white">${item.name}</h2>
+                </div>
+                <div class="p-6 sm:p-8 space-y-6">
+                    <div>
+                        <h4 class="text-sm font-bold uppercase tracking-wider text-slate-400 mb-2">À propos de ce set</h4>
+                        <p class="text-slate-300 leading-relaxed">${item.description}</p>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold uppercase tracking-wider text-sky-400 mb-3"><i class="fa-solid fa-landmark mr-2"></i>Éléments remarquables</h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                            ${item.details.map(d => `<div class="bg-slate-950/60 border border-slate-800 px-4 py-2.5 rounded-xl text-sm font-medium text-slate-200 flex items-center gap-2"><i class="fa-solid fa-circle-dot text-sky-500 text-xs"></i>${d}</div>`).join('')}
+                        </div>
+                    </div>
+                    <div class="pt-4 border-t border-slate-800 flex items-center justify-between">
+                        <label class="flex items-center gap-3 cursor-pointer">
+                            <input type="checkbox" ${isOwned ? 'checked' : ''} onchange="toggleOwnership('${item.setNum}')" class="w-5 h-5 accent-sky-500 rounded cursor-pointer">
+                            <span class="text-sm font-bold text-slate-200">Je possède ce set dans ma collection</span>
+                        </label>
+                        <button onclick="closeModal()" class="bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold px-5 py-2 rounded-xl transition text-sm">Fermer</button>
+                    </div>
+                </div>
+            `;
+
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            modal.querySelector('#modal-content').classList.remove('scale-95');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('set-modal');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            modal.querySelector('#modal-content').classList.add('scale-95');
+            const activeFilter = document.querySelector('.filter-btn.bg-sky-600')?.getAttribute('data-filter') || 'all';
+            renderGrid(activeFilter);
+        }
+
+        function toggleOwnership(setNum) {
+            userCollected[setNum] = !userCollected[setNum];
+            localStorage.setItem('lego_architecture_collected', JSON.stringify(userCollected));
+            updateTrackerCount();
+        }
+
+        function updateTrackerCount() {
+            const ownedCount = Object.values(userCollected).filter(Boolean).length;
+            const countEl = document.getElementById('tracker-count');
+            if (countEl) countEl.innerText = ownedCount;
+        }
+
+        function openTrackerModal() {
+            const modal = document.getElementById('tracker-modal');
+            const list = document.getElementById('tracker-list');
+            list.innerHTML = '';
+
+            setsData.forEach(item => {
+                const isOwned = userCollected[item.setNum] || false;
+                const row = document.createElement('label');
+                row.className = "flex items-center justify-between p-3.5 bg-slate-950/50 border border-slate-800 rounded-2xl hover:border-slate-700 transition cursor-pointer";
+                row.innerHTML = `
+                    <div class="flex items-center gap-3">
+                        <input type="checkbox" ${isOwned ? 'checked' : ''} onchange="toggleTrackerItem('${item.setNum}',
