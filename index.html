@@ -1,1 +1,442 @@
+<!DOCTYPE html>
+<html lang="fr" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LEGO Architecture Skylines - Collection Complète</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            900: '#0f172a',
+                            950: '#020617'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts & FontAwesome -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans min-h-screen selection:bg-sky-500 selection:text-white">
 
+    <header class="sticky top-0 z-40 bg-slate-900/80 backdrop-blur-md border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-sky-500/20">
+                    <i class="fa-solid fa-city text-white text-lg"></i>
+                </div>
+                <div>
+                    <span class="text-xs font-extrabold uppercase tracking-widest text-sky-400">LEGO Architecture</span>
+                    <h1 class="text-lg font-bold text-white tracking-tight">Skylines Collection</h1>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-4">
+                <button onclick="openTrackerModal()" class="flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-sky-400 hover:text-sky-300 px-4 py-2.5 rounded-xl border border-slate-700 transition font-semibold text-sm shadow-sm">
+                    <i class="fa-solid fa-clipboard-check"></i>
+                    <span>Mon Suivi (<span id="tracker-count">0</span>/14)</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="relative py-20 overflow-hidden border-b border-slate-800/60 bg-gradient-to-b from-slate-900 via-slate-950 to-slate-950">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#38bdf8_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <span class="inline-block py-1 px-3 rounded-full bg-sky-500/10 border border-sky-500/20 text-sky-400 text-xs font-bold tracking-widest uppercase mb-4">
+                Guide Interactif Officiel des Boîtes LEGO (2016 - 2025)
+            </span>
+            <h2 class="text-4xl sm:text-6xl font-extrabold text-white tracking-tight max-w-4xl mx-auto mb-6">
+                Les boîtes et sets officiels des plus belles métropoles en briques
+            </h2>
+            <p class="text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto mb-10">
+                Explorez tous les sets officiels Skylines avec les visuels des boîtes d'origine. Cliquez sur chaque set pour découvrir ses monuments et gérer votre collection.
+            </p>
+
+            <!-- Filter Tabs -->
+            <div id="filter-container" class="flex flex-wrap justify-center gap-2 sm:gap-3">
+                <button onclick="filterSets('all')" data-filter="all" class="filter-btn px-5 py-2.5 rounded-xl text-sm font-bold transition bg-sky-600 text-white shadow-lg shadow-sky-600/25">
+                    Tous les Sets
+                </button>
+                <button onclick="filterSets('2016')" data-filter="2016" class="filter-btn px-5 py-2.5 rounded-xl text-sm font-semibold transition bg-slate-900 text-slate-300 hover:bg-slate-800 border border-slate-800">
+                    2016 (Première vague)
+                </button>
+                <button onclick="filterSets('2017-2018')" data-filter="2017-2018" class="filter-btn px-5 py-2.5 rounded-xl text-sm font-semibold transition bg-slate-900 text-slate-300 hover:bg-slate-800 border border-slate-800">
+                    2017 - 2018
+                </button>
+                <button onclick="filterSets('2019-2020')" data-filter="2019-2020" class="filter-btn px-5 py-2.5 rounded-xl text-sm font-semibold transition bg-slate-900 text-slate-300 hover:bg-slate-800 border border-slate-800">
+                    2019 - 2020
+                </button>
+                <button onclick="filterSets('2022-2025')" data-filter="2022-2025" class="filter-btn px-5 py-2.5 rounded-xl text-sm font-semibold transition bg-slate-900 text-slate-300 hover:bg-slate-800 border border-slate-800">
+                    2022 - 2025 (Nouveautés)
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div id="sets-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Dynamically populated via JavaScript -->
+        </div>
+    </main>
+
+    <div id="set-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300">
+        <div id="modal-content" class="bg-slate-900 border border-slate-800 w-full max-w-2xl rounded-3xl overflow-hidden shadow-2xl transform scale-95 transition-transform duration-300">
+            <!-- Dynamically populated inside JS -->
+        </div>
+    </div>
+
+    <div id="tracker-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="bg-slate-900 border border-slate-800 w-full max-w-xl rounded-3xl overflow-hidden shadow-2xl transform scale-95 transition-transform duration-300 flex flex-col max-h-[85vh]">
+            <div class="p-6 border-b border-slate-800 flex items-center justify-between">
+                <div>
+                    <span class="text-xs font-bold text-sky-400 uppercase tracking-widest">Suivi personnel</span>
+                    <h3 class="text-xl font-bold text-white">Ma Collection de Skylines</h3>
+                </div>
+                <button onclick="closeTrackerModal()" class="w-10 h-10 rounded-full bg-slate-800 text-slate-400 hover:text-white flex items-center justify-center transition">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            <div class="p-6 overflow-y-auto space-y-4 flex-grow" id="tracker-list">
+                <!-- Checklist items -->
+            </div>
+            <div class="p-6 border-t border-slate-800 bg-slate-900/50 flex justify-between items-center">
+                <p class="text-sm text-slate-400" id="tracker-summary">0 sur 14 sets possédés</p>
+                <button onclick="closeTrackerModal()" class="bg-sky-600 hover:bg-sky-500 text-white font-bold px-6 py-2.5 rounded-xl transition">
+                    Enregistrer
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-slate-900 border-t border-slate-800 py-12 text-center text-slate-500 text-sm">
+        <p>© 2026 LEGO Architecture Skylines Fan Showcase. Conçu avec passion pour les amateurs de briques et d'urbanisme.</p>
+    </footer>
+
+    <script>
+        const setsData = [
+            {
+                id: 1,
+                setNum: "21026",
+                city: "Venise",
+                year: "2016",
+                category: "2016",
+                image: "https://images.brickset.com/sets/images/21026-1.jpg?rand=145163",
+                description: "Capturez la beauté magique des canaux et des monuments vénitiens historiques avec ce set de la première vague Skylines.",
+                monuments: ["Le Campanile de Saint-Marc", "La Basilique Saint-Marc", "Le Pont du Rialto", "Le Pont des Soupirs"]
+            },
+            {
+                id: 2,
+                setNum: "21027",
+                city: "Berlin",
+                year: "2016",
+                category: "2016",
+                image: "https://images.brickset.com/sets/images/21027-1.jpg?rand=145163",
+                description: "Un hommage saisissant à la capitale allemande, combinant monuments historiques et symboles de la réunification.",
+                monuments: ["La Porte de Brandebourg", "La Tour de la Télévision (Fernsehturm)", "Le Reichstag", "Le Mémorial du Mur de Berlin"]
+            },
+            {
+                id: 3,
+                setNum: "21028",
+                city: "New York City",
+                year: "2016",
+                category: "2016",
+                image: "https://images.brickset.com/sets/images/21028-1.jpg?rand=145163",
+                description: "Le set Skyline le plus emblématique et populaire représentant la ligne d'horizon de Manhattan.",
+                monuments: ["L'Empire State Building", "Le Chrysler Building", "La Statue de la Liberté", "Le One World Trade Center", "Le Flatiron Building"]
+            },
+            {
+                id: 4,
+                setNum: "21032",
+                city: "Sydney",
+                year: "2017",
+                category: "2017-2018",
+                image: "https://images.brickset.com/sets/images/21032-1.jpg?rand=145163",
+                description: "Cap sur l'hémisphère sud avec la magnifique baie de Sydney et ses voiles d'architecture légendaires.",
+                monuments: ["L'Opéra de Sydney", "Le Sydney Harbour Bridge", "La Sydney Tower", "Les gratte-ciels du quartier central"]
+            },
+            {
+                id: 5,
+                setNum: "21033",
+                city: "Chicago",
+                year: "2017",
+                category: "2017-2018",
+                image: "https://images.brickset.com/sets/images/21033-1.jpg?rand=145163",
+                description: "Célébrez l'architecture audacieuse de Windy City avec ses gratte-ciels pionniers le long de la rivière Chicago.",
+                monuments: ["La Willis Tower (Sears Tower)", "Le John Hancock Center", "Le Wrigley Building", "La tour Aqua", "Le pont de DuSable"]
+            },
+            {
+                id: 6,
+                setNum: "21034",
+                city: "Londres",
+                year: "2017",
+                category: "2017-2018",
+                image: "https://images.brickset.com/sets/images/21034-1.jpg?rand=145163",
+                description: "Une vue imprenable sur la Tamise regroupant les symboles royaux et modernes de la capitale britannique.",
+                monuments: ["Big Ben (Tour Élisabeth)", "Le London Eye", "Le Tower Bridge", "La National Gallery", "La Colonne Nelson"]
+            },
+            {
+                id: 7,
+                setNum: "21039",
+                city: "Shanghai",
+                year: "2018",
+                category: "2017-2018",
+                image: "https://images.brickset.com/sets/images/21039-1.jpg?rand=145163",
+                description: "Un panorama futuriste et coloré mettant en scène la modernité fulgurante de la mégalopole chinoise.",
+                monuments: ["La Tour Shanghai", "La Perle de l'Orient", "Le World Financial Center", "Le Bund", "Le temple de Longhua"]
+            },
+            {
+                id: 8,
+                setNum: "21047",
+                city: "Las Vegas",
+                year: "2018",
+                category: "2017-2018",
+                image: "https://images.brickset.com/sets/images/21047-1.jpg?rand=145163",
+                description: "Le Strip scintillant et ses hôtels-casinos extravagants reproduits en briques aux couleurs éclatantes.",
+                monuments: ["L'hôtel Bellagio & ses fontaines", "L'hôtel Luxor", "L'hôtel Wynn", "La tour Stratosphere", "Le panneau Welcome to Fabulous Las Vegas"]
+            },
+            {
+                id: 9,
+                setNum: "21043",
+                city: "San Francisco",
+                year: "2019",
+                category: "2019-2020",
+                image: "https://images.brickset.com/sets/images/21043-1.jpg?rand=145163",
+                description: "Entre collines escarpées, pont suspendu mondialement connu et architecture victorienne pittoresque.",
+                monuments: ["Le Golden Gate Bridge", "La Transamerica Pyramid", "La prison d'Alcatraz", "Les Painted Ladies", "La rue Lombard Street"]
+            },
+            {
+                id: 10,
+                setNum: "21044",
+                city: "Paris",
+                year: "2019",
+                category: "2019-2020",
+                image: "https://images.brickset.com/sets/images/21044-1.jpg?rand=145163",
+                description: "La Ville Lumière dans toute sa splendeur à travers ses monuments les plus prestigieux et ses allées arborées.",
+                monuments: ["La Tour Eiffel", "L'Arc de Triomphe", "Le Musée du Louvre", "Le Grand Palais", "Les Champs-Élysées"]
+            },
+            {
+                id: 11,
+                setNum: "21051",
+                city: "Tokyo",
+                year: "2020",
+                category: "2019-2020",
+                image: "https://images.brickset.com/sets/images/21051-1.jpg?rand=145163",
+                description: "Un set poétique et vibrant combinant traditions japonaises et technologies urbaines avant-gardistes.",
+                monuments: ["La Tour Tokyo", "La Tokyo Skytree", "Le Mont Fuji en arrière-plan", "Le carrefour de Shibuya", "La pagode Chureito"]
+            },
+            {
+                id: 12,
+                setNum: "21052",
+                city: "Dubaï",
+                year: "2020",
+                category: "2019-2020",
+                image: "https://images.brickset.com/sets/images/21052-1.jpg?rand=145163",
+                description: "Des gratte-ciels aux formes futuristes défiant les lois de la gravité au cœur du désert des Émirats.",
+                monuments: ["Le Burj Khalifa", "L'hôtel Burj Al Arab", "Les Emirates Towers", "Le Dubai Frame", "La fontaine de Dubaï"]
+            },
+            {
+                id: 13,
+                setNum: "21057",
+                city: "Singapour",
+                year: "2022",
+                category: "2022-2025",
+                image: "https://images.brickset.com/sets/images/21057-1.jpg?rand=145163",
+                description: "Une merveille d'ingénierie tropicale et moderne, couronnée par les célèbres super-arbres futuristes.",
+                monuments: ["Le Marina Bay Sands", "Les super-arbres de Gardens by the Bay", "L'Hôtel Fullerton", "Le OCBC Centre", "La Singapore River"]
+            },
+            {
+                id: 14,
+                setNum: "21068",
+                city: "Shanghai (Nouvelle version)",
+                year: "2025",
+                category: "2022-2025",
+                image: "https://images.brickset.com/sets/images/21039-1.jpg?rand=145163",
+                description: "Une réédition modernisée et enrichie de la skyline de Shanghai pour célébrer l'évolution architecturale de la ville.",
+                monuments: ["Nouvelles tours et extensions du quartier financier", "Le Bund illuminé", "Les ponts modernes sur le fleuve Huangpu"]
+            }
+        ];
+
+        let userCollected = JSON.parse(localStorage.getItem('lego_skylines_collected')) || {};
+
+        function renderGrid(filter = 'all') {
+            const grid = document.getElementById('sets-grid');
+            grid.innerHTML = '';
+
+            const filtered = filter === 'all' 
+                ? setsData 
+                : setsData.filter(item => item.category === filter);
+
+            filtered.forEach(item => {
+                const isOwned = userCollected[item.setNum] || false;
+                const card = document.createElement('div');
+                card.className = "group bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden hover:border-sky-500/50 transition duration-300 flex flex-col shadow-xl cursor-pointer";
+                card.onclick = () => openModal(item.id);
+
+                card.innerHTML = `
+                    <div class="relative h-64 overflow-hidden bg-white/5 p-4 flex items-center justify-center">
+                        <img src="${item.image}" alt="Set LEGO ${item.city}" class="max-h-full max-w-full object-contain group-hover:scale-105 transition duration-500" onerror="this.src='https://placehold.co/600x400/0f172a/38bdf8?text=LEGO+${encodeURIComponent(item.city)}'">
+                        <div class="absolute top-4 left-4 bg-slate-950/80 backdrop-blur-md px-3 py-1.5 rounded-xl border border-slate-700/50 text-xs font-bold text-sky-400">
+                            Set ${item.setNum}
+                        </div>
+                        <div class="absolute top-4 right-4 bg-slate-950/80 backdrop-blur-md px-3 py-1.5 rounded-xl border border-slate-700/50 text-xs font-semibold text-slate-300">
+                            ${item.year}
+                        </div>
+                        ${isOwned ? '<div class="absolute bottom-4 right-4 bg-emerald-500 text-slate-950 px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1 shadow-lg"><i class="fa-solid fa-check"></i> Possédé</div>' : ''}
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow justify-between">
+                        <div>
+                            <h3 class="text-2xl font-bold text-white group-hover:text-sky-400 transition mb-2">${item.city}</h3>
+                            <p class="text-slate-400 text-sm line-clamp-2">${item.description}</p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-slate-800 flex items-center justify-between text-xs font-bold text-sky-400">
+                            <span>Découvrir la boîte & monuments</span>
+                            <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition"></i>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+            updateTrackerCount();
+        }
+
+        function filterSets(category) {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.className = "filter-btn px-5 py-2.5 rounded-xl text-sm font-semibold transition bg-slate-900 text-slate-300 hover:bg-slate-800 border border-slate-800";
+            });
+            const activeBtn = document.querySelector(`[data-filter="${category}"]`);
+            if (activeBtn) {
+                activeBtn.className = "filter-btn px-5 py-2.5 rounded-xl text-sm font-bold transition bg-sky-600 text-white shadow-lg shadow-sky-600/25";
+            }
+            renderGrid(category);
+        }
+
+        function openModal(id) {
+            const item = setsData.find(s => s.id === id);
+            if (!item) return;
+
+            const modal = document.getElementById('set-modal');
+            const content = document.getElementById('modal-content');
+            const isOwned = userCollected[item.setNum] || false;
+
+            content.innerHTML = `
+                <div class="relative h-72 sm:h-80 bg-white/5 p-6 flex items-center justify-center">
+                    <img src="${item.image}" alt="Set LEGO ${item.city}" class="max-h-full max-w-full object-contain">
+                    <button onclick="closeModal()" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-slate-950/80 backdrop-blur-md text-slate-300 hover:text-white flex items-center justify-center transition border border-slate-800">
+                        <i class="fa-solid fa-xmark text-lg"></i>
+                    </button>
+                    <div class="absolute bottom-4 left-4 bg-slate-950/80 backdrop-blur-md px-4 py-2 rounded-xl border border-slate-800">
+                        <span class="text-xs font-bold text-sky-400 uppercase tracking-widest block">Set ${item.setNum} • ${item.year}</span>
+                        <h2 class="text-2xl font-extrabold text-white">${item.city}</h2>
+                    </div>
+                </div>
+                <div class="p-6 sm:p-8 space-y-6">
+                    <div>
+                        <h4 class="text-sm font-bold uppercase tracking-wider text-slate-400 mb-2">À propos de ce set</h4>
+                        <p class="text-slate-300 leading-relaxed">${item.description}</p>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold uppercase tracking-wider text-sky-400 mb-3"><i class="fa-solid fa-landmark mr-2"></i>Monuments reproduits</h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                            ${item.monuments.map(m => `<div class="bg-slate-950/60 border border-slate-800 px-4 py-2.5 rounded-xl text-sm font-medium text-slate-200 flex items-center gap-2"><i class="fa-solid fa-circle-dot text-sky-500 text-xs"></i>${m}</div>`).join('')}
+                        </div>
+                    </div>
+                    <div class="pt-4 border-t border-slate-800 flex items-center justify-between">
+                        <label class="flex items-center gap-3 cursor-pointer">
+                            <input type="checkbox" ${isOwned ? 'checked' : ''} onchange="toggleOwnership('${item.setNum}')" class="w-5 h-5 accent-sky-500 rounded cursor-pointer">
+                            <span class="text-sm font-bold text-slate-200">Je possède ce set dans ma collection</span>
+                        </label>
+                        <button onclick="closeModal()" class="bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold px-5 py-2 rounded-xl transition text-sm">Fermer</button>
+                    </div>
+                </div>
+            `;
+
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            modal.querySelector('#modal-content').classList.remove('scale-95');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('set-modal');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            modal.querySelector('#modal-content').classList.add('scale-95');
+            renderGrid(document.querySelector('.filter-btn.bg-sky-600')?.getAttribute('data-filter') || 'all');
+        }
+
+        function toggleOwnership(setNum) {
+            userCollected[setNum] = !userCollected[setNum];
+            localStorage.setItem('lego_skylines_collected', JSON.stringify(userCollected));
+            updateTrackerCount();
+        }
+
+        function updateTrackerCount() {
+            const ownedCount = Object.values(userCollected).filter(Boolean).length;
+            document.getElementById('tracker-count').innerText = ownedCount;
+        }
+
+        function openTrackerModal() {
+            const modal = document.getElementById('tracker-modal');
+            const list = document.getElementById('tracker-list');
+            list.innerHTML = '';
+
+            setsData.forEach(item => {
+                const isOwned = userCollected[item.setNum] || false;
+                const row = document.createElement('label');
+                row.className = "flex items-center justify-between p-3.5 bg-slate-950/50 border border-slate-800 rounded-2xl hover:border-slate-700 transition cursor-pointer";
+                row.innerHTML = `
+                    <div class="flex items-center gap-3">
+                        <input type="checkbox" ${isOwned ? 'checked' : ''} onchange="toggleTrackerItem('${item.setNum}', this.checked)" class="w-5 h-5 accent-sky-500 rounded cursor-pointer">
+                        <div>
+                            <span class="text-xs font-bold text-sky-400">Set ${item.setNum} (${item.year})</span>
+                            <h4 class="text-white font-semibold text-sm">${item.city}</h4>
+                        </div>
+                    </div>
+                    <span class="text-xs px-2.5 py-1 rounded-full ${isOwned ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-slate-800 text-slate-400'}">${isOwned ? 'Possédé' : 'Manquant'}</span>
+                `;
+                list.appendChild(row);
+            });
+
+            updateTrackerSummary();
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            modal.querySelector('div').classList.remove('scale-95');
+        }
+
+        function closeTrackerModal() {
+            const modal = document.getElementById('tracker-modal');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            modal.querySelector('div').classList.add('scale-95');
+            renderGrid(document.querySelector('.filter-btn.bg-sky-600')?.getAttribute('data-filter') || 'all');
+        }
+
+        function toggleTrackerItem(setNum, isChecked) {
+            userCollected[setNum] = isChecked;
+            localStorage.setItem('lego_skylines_collected', JSON.stringify(userCollected));
+            updateTrackerSummary();
+            updateTrackerCount();
+        }
+
+        function updateTrackerSummary() {
+            const ownedCount = Object.values(userCollected).filter(Boolean).length;
+            document.getElementById('tracker-summary').innerText = `${ownedCount} sur ${setsData.length} sets possédés`;
+        }
+
+        window.onload = function() {
+            renderGrid('all');
+        };
+    </script>
+</body>
+</html>
+```eof
